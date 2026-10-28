@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { SCHEDULE_DATA } from "@/data/gymData";
-import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH } from "./ui";
+import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH, CurvyUnderline } from "./ui";
 import { Reveal } from "./motion";
 import { BrushTransition } from "./BrushTransition";
 
@@ -38,12 +38,15 @@ export function Timetable() {
       <div className={`${CONTAINER} ${SECTION_PAD_WITH_BRUSH} relative z-10`}>
         <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div>
-            <h2 className={H2} style={DISPLAY_FONT}>
-              Weekly
-              <br />
-              batches
-            </h2>
-            <p className="mt-5 text-black/60 max-w-md leading-relaxed">
+            <div className="inline-block w-fit">
+              <h2 className={H2} style={DISPLAY_FONT}>
+                Weekly
+                <br />
+                batches
+              </h2>
+              <CurvyUnderline className="text-[#E11D2A] w-full h-2 sm:h-3 mt-1 sm:mt-2" />
+            </div>
+            <p className="mt-6 text-black/60 max-w-md leading-relaxed">
               The same timetable we keep pinned on our Instagram. Pick a batch, then book a free
               trial.
             </p>

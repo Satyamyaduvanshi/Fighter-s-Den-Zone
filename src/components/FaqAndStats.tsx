@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FAQS, GYM_INFO } from "@/data/gymData";
-import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH } from "./ui";
+import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH, CurvyUnderline } from "./ui";
 import { CountUp, Reveal } from "./motion";
 import { BrushTransition } from "./BrushTransition";
 
@@ -22,12 +22,15 @@ export function FaqAndStats() {
       <div className={`${CONTAINER} ${SECTION_PAD_WITH_BRUSH} relative z-10`}>
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <h2 className={H2} style={DISPLAY_FONT}>
-              Questions,
-              <br />
-              answered
-            </h2>
-            <p className="mt-5 text-white/60 max-w-xs leading-relaxed">
+            <div className="inline-block w-fit">
+              <h2 className={H2} style={DISPLAY_FONT}>
+                Questions,
+                <br />
+                answered
+              </h2>
+              <CurvyUnderline className="text-[#E11D2A] w-full h-2 sm:h-3 mt-1 sm:mt-2" />
+            </div>
+            <p className="mt-6 text-white/60 max-w-xs leading-relaxed">
               What new members usually ask before joining our classes.
             </p>
             <a

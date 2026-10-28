@@ -3,33 +3,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BrandLogo } from "./BrandLogo";
 import { GYM_INFO } from "@/data/gymData";
-import { DISPLAY_FONT } from "./ui";
+import { DISPLAY_FONT, CurvyUnderline } from "./ui";
 import { MotionStyles } from "./motion";
 
 const SLIDES = [
   {
     label: "MMA",
     caption: "Mixed martial arts, built from the basics up.",
-    image:
-      "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1400&q=75",
+    image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1400&q=75",
   },
   {
     label: "Striking",
     caption: "Boxing and kickboxing, pad work and conditioning.",
-    image:
-      "https://images.unsplash.com/photo-1517438322307-e67111335449?auto=format&fit=crop&w=1400&q=75",
+    image: "https://images.unsplash.com/photo-1517438322307-e67111335449?auto=format&fit=crop&w=1400&q=75",
   },
   {
     label: "Kids",
     caption: "A focused, safe batch for ages 5 to 13.",
-    image:
-      "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1400&q=75",
+    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1400&q=75",
   },
   {
     label: "Grappling",
     caption: "Jiu-jitsu and practical self-defence.",
-    image:
-      "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1400&q=75",
+    image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1400&q=75",
   },
 ];
 
@@ -238,18 +234,21 @@ export function HeroSection({ selectedProgram }: { selectedProgram?: string }) {
       </div>
 
       <div className="fdz-fade relative z-10 order-2 lg:order-1 flex flex-col justify-end px-5 sm:px-8 lg:px-12 xl:px-16 pt-4 lg:pt-32 pb-8">
-        <h1
-          className="uppercase text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] tracking-tight"
-          style={DISPLAY_FONT}
-        >
-          Skill.
-          <br />
-          Confidence.
-          <br />
-          Power.
-        </h1>
+        <div className="inline-block w-fit">
+          <h1
+            className="uppercase text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] tracking-tight"
+            style={DISPLAY_FONT}
+          >
+            Skill.
+            <br />
+            Confidence.
+            <br />
+            Power.
+          </h1>
+          <CurvyUnderline className="text-[#E11D2A] w-full h-2 sm:h-3 mt-1 sm:mt-2" />
+        </div>
 
-        <p className="mt-5 max-w-md text-base text-white/70 leading-relaxed">
+        <p className="mt-6 max-w-md text-base text-white/70 leading-relaxed">
           Martial arts for kids and adults, in Rohini and Dwarka. Your first class is free, and the
           first 50 members get half off.
         </p>

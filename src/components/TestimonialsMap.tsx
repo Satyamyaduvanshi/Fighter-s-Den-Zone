@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { GYM_INFO } from "@/data/gymData";
 import { BrandLogo } from "./BrandLogo";
 import { BrushTransition } from "./BrushTransition";
-import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH } from "./ui";
+import { DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH, CONTAINER, CurvyUnderline } from "./ui";
 
 const SLIDE_MS = 7000;
 
@@ -13,7 +13,7 @@ const REVIEWS = [
     quote:
       "Hands down the best MMA and boxing gym in Rohini. The coaches focus on real technique instead of random cardio. I joined with the 50% off offer and I’m already down 6 kg.",
     author: "Rohit Verma",
-    role: "MMA and boxing member, Rohini",
+    role: "MMA & Boxing, Rohini",
   },
   {
     quote:
@@ -25,13 +25,13 @@ const REVIEWS = [
     quote:
       "I walked in with zero experience and was nervous about it. The coaches start from the basics and nobody rushes you. A few months in, I’m sparring and sleeping better than I have in years.",
     author: "Arjun Mehta",
-    role: "Boxing member, Dwarka",
+    role: "Boxing, Dwarka",
   },
   {
     quote:
       "I joined the self-defence batch after a bad experience travelling at night. I feel far more confident now, and the women’s group is supportive and fun to train with.",
     author: "Neha Kapoor",
-    role: "Self-defence member, Rohini",
+    role: "Self-defence, Rohini",
   },
 ];
 
@@ -41,11 +41,6 @@ const CENTERS = [
     name: "Rohini",
     address: GYM_INFO.address,
     map: "https://www.google.com/maps?q=Manav+Chowk+Sector+15+Rohini+Delhi+110085&z=16&output=embed",
-    hours: [
-      { label: "Morning batches", value: "6:30 AM – 10:00 AM" },
-      { label: "Evening batches", value: "4:00 PM – 9:30 PM" },
-      { label: "Sunday", value: "Open mat, by appointment" },
-    ],
   },
   {
     id: "dwarka",
@@ -53,7 +48,6 @@ const CENTERS = [
     address:
       "Plot No. 57, 3rd Floor, Mohit Nagar, Old Palam Road, Sector 15, Dwarka, New Delhi 110078",
     map: "https://www.google.com/maps?q=Plot+57+Mohit+Nagar+Old+Palam+Road+Sector+15+Dwarka+Delhi+110078&z=16&output=embed",
-    hours: null,
   },
 ];
 
@@ -81,75 +75,92 @@ function Testimonials() {
     >
       <BrushTransition variant={2} className="text-black" />
       
-      <div
-        className={`${CONTAINER} ${SECTION_PAD_WITH_BRUSH} relative z-10 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start lg:gap-16`}
-      >
-        <div className="lg:col-span-5">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#E11D2A]">
-            The community
-          </p>
+      <div className={`${CONTAINER} ${SECTION_PAD_WITH_BRUSH} relative z-10`}>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 lg:items-center">
+          
+          <div className="lg:w-1/3 shrink-0">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#E11D2A]">
+              The community
+            </p>
+            <div className="inline-block w-fit">
+              <h2 className={H2} style={DISPLAY_FONT}>
+                Success
+                <br />
+                stories<span className="text-[#E11D2A]">.</span>
+              </h2>
+              <CurvyUnderline className="text-[#E11D2A] w-full h-2 sm:h-3 mt-1 sm:mt-2" />
+            </div>
+            <p className="mt-6 text-sm leading-7 text-black/55">
+              Real training. Consistent progress. Confidence that goes beyond
+              the gym.
+            </p>
+          </div>
 
-          <h2 className={H2} style={DISPLAY_FONT}>
-            Success
-            <br />
-            stories<span className="text-[#E11D2A]">.</span>
-          </h2>
-
-          <p className="mt-5 max-w-sm text-sm leading-7 text-black/55">
-            Real training. Consistent progress. Confidence that goes beyond
-            the gym.
-          </p>
-        </div>
-
-        <div
-          className="min-w-0 lg:col-span-7"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocus={() => setPaused(true)}
-          onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) {
-              setPaused(false);
-            }
-          }}
-        >
           <div
-            className="h-[340px] overflow-hidden sm:h-[300px] lg:h-[290px]"
-            aria-live="polite"
-            aria-atomic="true"
+            className="lg:w-2/3 flex flex-col gap-10"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setPaused(false);
+              }
+            }}
           >
-            <blockquote key={review.author}>
-              <p className="text-xl leading-relaxed sm:text-2xl sm:leading-[1.45] lg:text-3xl">
+            <div className="min-h-[220px] sm:min-h-[160px] lg:min-h-[180px] flex items-center" aria-live="polite" aria-atomic="true">
+              <blockquote
+                key={idx}
+                className="text-2xl leading-snug sm:text-3xl sm:leading-snug lg:text-4xl lg:leading-tight animate-fade-in"
+                style={DISPLAY_FONT}
+              >
                 “{review.quote}”
-              </p>
+              </blockquote>
+            </div>
 
-              <footer className="mt-7">
-                <p className="text-base font-semibold">{review.author}</p>
-                <p className="mt-1 text-sm text-black/50">{review.role}</p>
-              </footer>
-            </blockquote>
+            <div className="grid grid-cols-4 gap-3 sm:gap-5">
+              {REVIEWS.map((item, i) => {
+                const isSelected = idx === i;
+                const isPast = i < idx;
+
+                return (
+                  <button
+                    key={item.author}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => setIdx(i)}
+                    className="group flex flex-col gap-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+                  >
+                    <div className="h-1.5 w-full bg-black/10 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full bg-[#E11D2A] origin-left ${isPast ? "w-full" : "w-0"}`}
+                        style={
+                          isSelected
+                            ? {
+                                animation: `fdz-progress ${SLIDE_MS}ms linear forwards`,
+                                animationPlayState: paused ? "paused" : "running",
+                              }
+                            : {}
+                        }
+                      />
+                    </div>
+                    <div>
+                      <span
+                        className={`block text-sm sm:text-base font-bold transition-colors ${
+                          isSelected ? "text-black" : "text-black/45 group-hover:text-black/80"
+                        }`}
+                      >
+                        {item.author}
+                      </span>
+                      <span className="hidden sm:block mt-0.5 text-xs text-black/50">
+                        {item.role}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-4">
-            {REVIEWS.map((item, i) => {
-              const selected = idx === i;
-
-              return (
-                <button
-                  key={item.author}
-                  type="button"
-                  aria-pressed={selected}
-                  onClick={() => setIdx(i)}
-                  className={`border-b-2 pb-3 text-left text-sm transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
-                    selected
-                      ? "border-[#E11D2A] text-black"
-                      : "border-black/10 text-black/45 hover:border-black/30 hover:text-black"
-                  }`}
-                >
-                  <span className="block truncate">{item.author}</span>
-                </button>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
@@ -161,278 +172,174 @@ function LocationFooter() {
   const center = CENTERS[active];
 
   const phone = GYM_INFO.phone.replace(/[^\d+]/g, "");
-
   const waLink = `https://wa.me/${GYM_INFO.whatsappNumber}?text=${encodeURIComponent(
     `Hi Fighter's Den Zone! I'd like to book a free trial class at your ${center.name} centre.`
   )}`;
-
   const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     center.address
   )}`;
 
   return (
-    <section
-      id="location"
-      className="relative isolate bg-black text-white flex flex-col"
-    >
-      <BrushTransition variant={3} className="text-white" />
+    <section id="location" className="relative isolate bg-black text-white w-full lg:h-screen lg:overflow-hidden flex flex-col">
+      <BrushTransition variant={3} className="text-white z-20" />
 
-      <div
-        className={`${CONTAINER} pb-16 pt-8 sm:pb-20 sm:pt-12 lg:pb-24 relative z-10`}
-      >
-        <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="min-w-0 lg:col-span-5 xl:col-span-4">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#FF4D58]">
-              Fighter&apos;s Den Zone
-            </p>
+      {/* min-h-0 allows the flex-1 container to lock dynamically on single page without scrolling */}
+      <div className="flex flex-col lg:flex-row w-full flex-1 min-h-0 relative">
+        
+        {/* LEFT COLUMN: Ultra compact 100vh lock layout based on screenshot */}
+        <div className="relative z-10 w-full lg:w-1/2 flex justify-center lg:justify-end bg-black">
+          <div className="w-full max-w-[580px] px-5 sm:px-8 lg:px-12 xl:px-16 pt-8 pb-8 lg:pt-14 flex flex-col justify-between h-full mx-auto lg:mx-0">
+            
+            <div className="w-full">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#FF4D58]">
+                Join the Den
+              </p>
+              <div className="inline-block w-fit">
+                <h2 className={H2} style={DISPLAY_FONT}>
+                  Visit us<span className="text-[#E11D2A]">.</span>
+                </h2>
+                <CurvyUnderline className="text-[#E11D2A] w-full h-2 sm:h-3 mt-1" />
+              </div>
+              <p className="mt-3 max-w-sm text-sm leading-6 text-white/55 hidden sm:block">
+                Find your nearest training centre and take the first step towards
+                becoming stronger, fitter and more confident.
+              </p>
 
-            <h2 className={H2} style={DISPLAY_FONT}>
-              Visit us<span className="text-[#E11D2A]">.</span>
-            </h2>
-
-            <p className="mt-4 max-w-sm text-sm leading-7 text-white/50">
-              Find your nearest training centre and take the first step
-              towards becoming stronger, fitter and more confident.
-            </p>
-
-            <div
-              role="tablist"
-              aria-label="Choose a training centre"
-              className="mt-8 inline-flex gap-1 rounded-lg border border-white/10 bg-white/[0.035] p-1"
-            >
-              {CENTERS.map((item, i) => {
-                const selected = active === i;
-
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="tab"
-                    id={`location-tab-${item.id}`}
-                    aria-selected={selected}
-                    aria-controls="location-panel"
-                    onClick={() => setActive(i)}
-                    className={`min-w-24 rounded-md px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D2A] ${
-                      selected
-                        ? "bg-[#E11D2A] text-white"
-                        : "text-white/55 hover:bg-white/[0.06] hover:text-white"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div
-              key={center.id}
-              id="location-panel"
-              role="tabpanel"
-              aria-labelledby={`location-tab-${center.id}`}
-              className="mt-8"
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-[#FF4D58]">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="size-5"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-                    <circle cx="12" cy="10" r="2.5" />
-                  </svg>
-                </div>
-
-                <div className="min-w-0 pt-0.5">
-                  <h3 className="text-sm font-semibold">
-                    {center.name} centre
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-white/55">
-                    {center.address}
-                  </p>
-
-                  <a
-                    href={mapsLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-2 text-sm text-white/80 transition-colors hover:text-[#FF4D58]"
-                  >
-                    Get directions <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
+              {/* Location Tabs */}
+              <div
+                role="tablist"
+                aria-label="Choose a training centre"
+                className="mt-6 inline-flex w-full sm:w-auto p-1.5 rounded-xl bg-white/5 border border-white/10"
+              >
+                {CENTERS.map((item, i) => {
+                  const selected = active === i;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      role="tab"
+                      id={`location-tab-${item.id}`}
+                      aria-selected={selected}
+                      aria-controls="location-panel"
+                      onClick={() => setActive(i)}
+                      className={`flex-1 sm:flex-none min-w-[140px] rounded-lg px-5 py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D2A] ${
+                        selected
+                          ? "bg-[#E11D2A] text-white shadow-lg"
+                          : "text-white/60 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      {item.name}
+                    </button>
+                  );
+                })}
               </div>
 
-              <div className="mt-7 border-t border-white/10 pt-6">
-                <a
-                  href={`tel:${phone}`}
-                  className="inline-flex items-center gap-3 text-lg font-medium transition-colors hover:text-[#FF4D58]"
-                >
-                  <span className="text-white/45" aria-hidden="true">
-                    ↗
-                  </span>
-                  {GYM_INFO.phone}
+              {/* Minimal Address Box */}
+              <div
+                key={center.id}
+                id="location-panel"
+                role="tabpanel"
+                aria-labelledby={`location-tab-${center.id}`}
+                className="mt-6 animate-fade-in"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white backdrop-blur-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-5" aria-hidden="true">
+                      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0 pt-0.5">
+                    <h3 className="text-base font-bold tracking-wide">{center.name} Centre</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-white/60 line-clamp-2">{center.address}</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors px-4 py-3.5 text-sm font-medium text-white">
+                    Get Directions <span aria-hidden="true">↗</span>
+                  </a>
+                  <a href={`tel:${phone}`} className="flex items-center justify-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors px-4 py-3.5 text-sm font-medium text-white">
+                    Call Us <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+
+                <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-4 flex w-full items-center justify-center gap-3 rounded-xl bg-[#E11D2A] px-5 py-4 text-sm font-bold tracking-wide text-white transition-all hover:bg-white hover:text-black">
+                  Book a Free Trial Session <span aria-hidden="true">↗</span>
                 </a>
               </div>
+            </div>
 
-              <div className="mt-7 rounded-xl border border-white/10 bg-white/[0.035] p-5 sm:p-6">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
-                  Training hours
-                </h3>
-
-                {center.hours ? (
-                  <dl className="mt-5 space-y-4">
-                    {center.hours.map((hour) => (
-                      <div
-                        key={hour.label}
-                        className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 text-sm"
-                      >
-                        <dt className="text-white/50">{hour.label}</dt>
-                        <dd className="text-right font-medium leading-5 text-white/85">
-                          {hour.value}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                ) : (
-                  <p className="mt-4 text-sm leading-6 text-white/55">
-                    Message us on WhatsApp to confirm available training
-                    batches and timings.
-                  </p>
-                )}
+            {/* Locked Minimal Footer */}
+            <footer className="mt-8 pt-6 border-t border-white/15 w-full shrink-0 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 pb-2">
+              <div className="flex items-center gap-3">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden ring-1 ring-[#E11D2A] bg-black shrink-0">
+                  <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
+                </div>
+                <div className="leading-none">
+                  <span className="block text-base uppercase tracking-wide text-white" style={DISPLAY_FONT}>
+                    Fighter’s Den Zone
+                  </span>
+                  <span className="block text-[10px] mt-1 text-white/50">
+                    Rohini &amp; Dwarka
+                  </span>
+                </div>
               </div>
 
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 flex w-full items-center justify-center gap-3 rounded-lg bg-[#E11D2A] px-5 py-4 text-sm font-semibold text-white transition-colors hover:bg-[#C91925] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                Book a free trial <span aria-hidden="true">↗</span>
-              </a>
+              <nav aria-label="Footer navigation" className="w-full sm:w-auto">
+                <ul className="grid grid-cols-2 sm:flex sm:flex-col gap-x-4 gap-y-2 text-right">
+                  <li><a className="text-xs font-medium text-white/60 hover:text-white transition-colors" href="#programs">Programs</a></li>
+                  <li><a className="text-xs font-medium text-white/60 hover:text-white transition-colors" href="#schedule">Timetable</a></li>
+                  <li><a className="text-xs font-medium text-white/60 hover:text-white transition-colors" href="#faq">FAQ</a></li>
+                  <li>
+                    <a className="inline-flex items-center gap-1 text-xs font-medium text-[#FF4D58] hover:text-white transition-colors" href={GYM_INFO.instagramUrl} target="_blank" rel="noopener noreferrer">
+                      Instagram <span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </footer>
 
-              <p className="mt-3 text-center text-xs text-white/35">
-                Start training. Build confidence.
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: 50% split Map (Fills remaining height smoothly) */}
+        <div className="relative w-full h-[50vh] lg:w-1/2 lg:h-full bg-[#0a0a0a]">
+          <iframe
+            key={center.id}
+            title={`${center.name} gym location map`}
+            src={center.map}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="absolute inset-0 w-full h-full border-0 grayscale contrast-[0.9] opacity-70"
+          />
+          
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-black/10 to-black hidden lg:block" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_rgba(0,0,0,1)]" />
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-8 sm:p-12 lg:p-14 z-10">
+            <div className="max-w-md">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#FF4D58] drop-shadow-md">
+                Training Base
+              </p>
+              <p className="mt-2 text-4xl lg:text-6xl uppercase leading-none drop-shadow-lg text-white" style={DISPLAY_FONT}>
+                {center.name}
               </p>
             </div>
           </div>
 
-          <div className="min-w-0 lg:col-span-7 xl:col-span-8">
-            <div className="relative h-[320px] overflow-hidden rounded-xl border border-white/10 bg-[#151515] sm:h-[400px] lg:h-full lg:min-h-[620px]">
-              <iframe
-                key={center.id}
-                title={`${center.name} gym location map`}
-                src={center.map}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0 size-full border-0 grayscale contrast-[0.9]"
-              />
-
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-black/10"
-              />
-
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent px-5 pb-5 pt-16 sm:px-7 sm:pb-7">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">
-                  Find us in Delhi
-                </p>
-
-                <p className="mt-2 text-lg font-semibold sm:text-xl">
-                  {center.name}
-                  <span className="ml-2 text-[#FF4D58]">●</span>
-                </p>
-
-                <p className="mt-1 max-w-md text-sm leading-6 text-white/60">
-                  Fighter&apos;s Den Zone · Your next training session starts
-                  here.
-                </p>
-              </div>
-
-              <a
-                href={mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-lg border border-white/15 bg-black/80 px-4 py-3 text-xs font-medium text-white backdrop-blur-md transition-colors hover:bg-[#E11D2A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-5 sm:top-5"
-              >
-                Open in Maps <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
+          <a
+            href={mapsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute right-6 top-6 sm:right-10 sm:top-10 z-10 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-black/60 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:bg-[#E11D2A] hover:border-[#E11D2A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Open Maps <span aria-hidden="true">↗</span>
+          </a>
         </div>
+
       </div>
-
-      <footer className="relative z-10 border-t border-white/10 bg-black">
-        <div className={`${CONTAINER} py-10 sm:py-12`}>
-          <div className="grid grid-cols-1 gap-9 md:grid-cols-12 md:items-start md:gap-8">
-            <div className="min-w-0 md:col-span-6 lg:col-span-7">
-              <BrandLogo variant="light" />
-
-              <p className="mt-5 max-w-md text-sm leading-7 text-white/45">
-                Skill, confidence and power. MMA, boxing, kickboxing and
-                jiu-jitsu for kids and adults in Rohini and Dwarka.
-              </p>
-            </div>
-
-            <nav
-              aria-label="Footer navigation"
-              className="min-w-0 md:col-span-6 lg:col-span-5"
-            >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/35">
-                Explore
-              </p>
-
-              <ul className="mt-5 grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4">
-                <li>
-                  <a
-                    className="text-sm text-white/60 transition-colors hover:text-white"
-                    href="#programs"
-                  >
-                    Programs
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-sm text-white/60 transition-colors hover:text-white"
-                    href="#schedule"
-                  >
-                    Timetable
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-sm text-white/60 transition-colors hover:text-white"
-                    href="#faq"
-                  >
-                    FAQ
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-white"
-                    href={GYM_INFO.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Instagram <span aria-hidden="true">↗</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-          <div className="mt-9 flex flex-col gap-3 border-t border-white/[0.08] pt-5 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
-            <p>© Fighter&apos;s Den Zone. All rights reserved.</p>
-            <p>Rohini &amp; Dwarka, New Delhi</p>
-          </div>
-        </div>
-      </footer>
     </section>
   );
 }

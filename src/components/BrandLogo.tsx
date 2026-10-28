@@ -18,13 +18,13 @@ export function BrandLogo({ variant = "light", showText = true }: BrandLogoProps
         onBlack ? "focus-visible:outline-white" : "focus-visible:outline-black"
       }`}
     >
-      <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden ring-1 ring-[#E11D2A] bg-black shrink-0">
+      <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden ring-1 ring-[#E11D2A] bg-black shrink-0">
         <Image
           src="/logo.png"
           alt="Fighter’s Den Zone logo"
           fill
           priority
-          sizes="48px"
+          sizes="44px"
           className="object-cover"
         />
       </div>
@@ -32,18 +32,18 @@ export function BrandLogo({ variant = "light", showText = true }: BrandLogoProps
       {showText && (
         <div className="leading-none">
           <span
-            className={`block text-lg sm:text-xl uppercase tracking-wide ${
+            className={`block text-base sm:text-lg uppercase tracking-wide ${
               onBlack ? "text-white" : "text-black"
             }`}
             style={DISPLAY_FONT}
           >
             Fighter’s Den Zone
           </span>
-          <span className={`block text-xs mt-1 ${onBlack ? "text-white/60" : "text-black/60"}`}>
+          <span className={`block text-[10px] sm:text-xs mt-1 ${onBlack ? "text-white/60" : "text-black/60"}`}>
             Rohini and Dwarka
           </span>
         </div>
       )}
     </Link>
   );
-}   
+}

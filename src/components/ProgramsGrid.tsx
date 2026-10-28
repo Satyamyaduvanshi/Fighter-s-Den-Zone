@@ -2,7 +2,7 @@
 
 import React from "react";
 import { PROGRAMS } from "@/data/gymData";
-import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH } from "./ui";
+import { CONTAINER, DISPLAY_FONT, H2, SECTION_PAD_WITH_BRUSH, CurvyUnderline } from "./ui";
 import { Reveal } from "./motion";
 import { BrushTransition } from "./BrushTransition";
 
@@ -17,16 +17,20 @@ const FALLBACK_SPAN = "lg:col-span-2";
 export function ProgramsGrid() {
   return (
     <section id="programs" className="relative isolate bg-white text-black flex flex-col">
-      {/* Pushes content down naturally so text never overlaps */}
       <BrushTransition variant={1} className="text-black" />
       
       <div className={`${CONTAINER} ${SECTION_PAD_WITH_BRUSH} relative z-10`}>
         <Reveal className="grid lg:grid-cols-12 gap-6 lg:gap-16 lg:items-end">
-          <h2 className={`lg:col-span-7 ${H2}`} style={DISPLAY_FONT}>
-            Find your
-            <br />
-            discipline
-          </h2>
+          <div className="lg:col-span-7">
+            <div className="inline-block w-fit">
+              <h2 className={H2} style={DISPLAY_FONT}>
+                Find your
+                <br />
+                discipline
+              </h2>
+              <CurvyUnderline className="text-[#E11D2A] w-full h-2 sm:h-3 mt-1 sm:mt-2" />
+            </div>
+          </div>
           <p className="lg:col-span-5 text-black/60 leading-relaxed max-w-md">
             Combat technique, motor skills and explosive fitness in one place. Kids, beginners and
             competing fighters each train in their own batch.

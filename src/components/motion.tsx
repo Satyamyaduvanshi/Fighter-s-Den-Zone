@@ -45,10 +45,14 @@ export function MotionStyles() {
       @keyframes fdz-fade { from { opacity: 0; } to { opacity: 1; } }
       @keyframes fdz-swap { from { opacity: 0; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: none; } }
       @keyframes fdz-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      @keyframes fade-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+      
       .fdz-fade { animation: fdz-fade 0.9s ease-out both; }
       .fdz-swap { animation: fdz-swap 0.5s ease-out both; }
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+      
       @media (prefers-reduced-motion: reduce) {
-        .fdz-fade, .fdz-swap { animation: none; }
+        .fdz-fade, .fdz-swap, .animate-fade-in { animation: none; }
       }
     `}</style>
   );

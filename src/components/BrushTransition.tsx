@@ -30,23 +30,20 @@ export function BrushTransition({ className = "text-white", variant = 1 }: Brush
   return (
     <div
       aria-hidden="true"
-      className={`block w-full h-24 sm:h-32 md:h-44 lg:h-52 -mt-[1px] ${className}`}
+      className={`block shrink-0 w-full h-16 sm:h-24 md:h-32 lg:h-36 -mt-[1px] pointer-events-none z-20 ${className}`}
     >
-      {/* Variant 1: Original slope (Heavy right) */}
       {variant === 1 && (
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="h-full w-full" fill="none">
           <SvgContent />
         </svg>
       )}
 
-      {/* Variant 2: Mirrored slope (Heavy left) using CSS transform */}
       {variant === 2 && (
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="h-full w-full scale-x-[-1]" fill="none">
           <SvgContent />
         </svg>
       )}
 
-      {/* Variant 3: Double slope / Curtain (Heavy both sides, thin middle) */}
       {variant === 3 && (
         <svg viewBox="0 0 1440 320" preserveAspectRatio="none" className="h-full w-full" fill="none">
           <path d="M0,0 L1440,0 L1440,280 C1100,80 340,80 0,280 Z" fill="currentColor" />
